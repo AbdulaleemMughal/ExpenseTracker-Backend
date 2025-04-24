@@ -8,7 +8,17 @@ const PORT = process.env.PORT || 3000;
 
 // middlewares
 app.use(express.json());
-app.use(cors());
+
+const allowedOrigin = [
+  "https://expense-tracker-frontend-bice-ten.vercel.app/",
+  "http://localhost:3000",
+];
+app.use(
+  cors({
+    origin: allowedOrigin,
+    methods: ["GET", "POST", "PUT", "DELETE"],
+  })
+);
 
 // routes
 app.use("/", transactionRouter);
